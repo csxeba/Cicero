@@ -17,22 +17,6 @@ TYPES = [NONE, CONSTANT, DYNAMIC]
 class ConvergenceProperties:
     type: str = ""
     constant: int = -1
-    step: int = -1
-    indicator_state: np.ndarray = None
-
-    def set_indicator_state(self, state_history: np.ndarray):
-        """Indicator state is the state which is used to represent a convergence"""
-        if self.type == CONSTANT:
-            self.indicator_state = state_history[-1]  # Simply take a state after convergence
-            assert np.sum(self.indicator_state) == self.constant
-            return
-
-        # Take the state from recent history with the least number of cells
-        indicator_index = np.argmin(state_history.sum(axis=(1, 2)))
-        self.indicator_state = state_history[indicator_index]
-
-    def set_step(self, step):
-        self.step = step
 
 
 def calculate_oscillation_statistics(far_past: np.ndarray, recent_past: np.ndarray):

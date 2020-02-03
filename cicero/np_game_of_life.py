@@ -30,7 +30,7 @@ class ToroidalGOL:
                           alive_probability: float = None,
                           seed: int = None):
 
-        if alive_probability is None:
+        if not alive_probability:
             alive_probability = np.random.random()
         if seed is not None:
             np.random.seed(seed)
@@ -67,14 +67,14 @@ class ToroidalGOL:
 
             if convergence_props.type != convergence.NONE:
                 if self.convergence_properties is None:
-                    convergence_props.set_indicator_state(np.array(history[-len(self.num_cells)]))
-                    convergence_props.set_step(step)
+                    convergence_props.step = step
                     self.convergence_properties = convergence_props
                 if break_on_convergence:
                     if verbose:
                         print("\nSimulation shut down early due to convergence:")
                         print(f"CONVERGENCE TYPE: <{convergence_props.type}> "
-                              f"CONVERGENCE CONSTANT: {convergence_props.constant}")
+                              f"CONVERGENCE CONSTANT: {convergence_props.constant} "
+                              f"CONVERGED IN STEP <{step}>")
                     break
         
         self.history = np.array(history)
