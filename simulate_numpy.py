@@ -22,13 +22,12 @@ def dispatch_user_defined_simulation(args):
 
 
 def main():
-    desr = """Toroidal Game of Life
+    descr = """Toroidal Game of Life
     
     Use this script to execute one-shot simulations.
-    
     """
 
-    parser = ArgumentParser("Cicero - NumPy simulation", description="Toroidal Game of Life")
+    parser = ArgumentParser("Cicero - NumPy simulation", description=descr)
     parser.add_argument("--initial-state", default="random", type=str,
                         help="Either a JSON file path or 'random'")
     parser.add_argument("--convergence-detector-window", default=30, type=int,
