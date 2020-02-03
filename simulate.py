@@ -9,7 +9,7 @@ def dispatch_random_simulation(width, height, args):
         height=height,
         alive_probability=args.init_probability,
         convergence_memory=args.convergence_detector_window)
-    gol.simulate(steps=args.max_steps, break_on_convergence=args.break_on_convergence)
+    gol.simulate(steps=args.max_steps, break_on_convergence=args.break_on_convergence, verbose=1)
     return gol.history
 
 
@@ -36,7 +36,7 @@ def main():
                         help="Whether to end the simulation on convergence. Default: True")
     parser.add_argument("--replay-fps", default=5, type=int,
                         help="Replay speed in frames per second. Default: 5")
-    parser.add_argument("--init-probability", default=None, type=int,
+    parser.add_argument("--init-probability", default=None, type=float,
                         help="If set, the random initialization will produce active cells in this rate. Default: None")
     parser.add_argument("--size", default="6x6", type=str,
                         help="Simulation grid size. Default: 6x6")

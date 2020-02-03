@@ -2,7 +2,7 @@
 
 import cv2
 import numpy as np
-from matplotlib import axes, pyplot as plt
+from matplotlib import pyplot as plt
 
 
 def plot_flattened_history(history: np.ndarray):
