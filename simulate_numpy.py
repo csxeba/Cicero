@@ -22,7 +22,7 @@ def dispatch_user_defined_simulation(args):
 
 
 def main():
-    parser = ArgumentParser("Cicero", description="Toroidal Game of Life simulation")
+    parser = ArgumentParser("Cicero - NumPy simulation", description="Toroidal Game of Life")
     parser.add_argument("--initial-state", default="random", type=str)
     parser.add_argument("--convergence-detector-window", default=30, type=int)
     parser.add_argument("--break-on-convergence", default=False, type=bool)

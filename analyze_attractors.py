@@ -11,16 +11,12 @@ def recenter(state):
     centered_coords[centered_coords < 0] = 6 + centered_coords[centered_coords < 0]
     centered_coords[centered_coords >= 6] = 6 - centered_coords[centered_coords >= 6]
     recentered_coords = (centered_coords + 2) % 6
+
     new_state = np.zeros_like(state)
     new_state[tuple(recentered_coords[:, 0]), tuple(recentered_coords[:, 1])] = 1
+
     torque = stats.circvar(recentered_coords, axis=0).sum()
-    if new_state.sum() != state.sum() or torque == 2.4287:
-        f, (t, b) = plt.subplots(1, 2, sharey="all")
-        t.imshow(state)
-        t.plot(*circular_mean[::-1], "rx")
-        b.imshow(new_state)
-        plt.show()
-        print("Ajj")
+
     return new_state, torque
 
 

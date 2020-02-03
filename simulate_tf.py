@@ -1,18 +1,20 @@
+import argparse
+
 import numpy as np
 
 import cicero
 
-NUM_SIMULATIONS = 100000
-MAX_STEPS = 100
-CONVERGENCE_WINDOW_WIDTH = 30
-DISPLAY_FPS = 0
+parser = argparse.ArgumentParser("Cicero - TensorFlow simulation", description="Toroidal Game of Life")
 
-gol = cicero.tf_game_of_life.TFToroidalGOL.from_random_states(num_simulations=NUM_SIMULATIONS)
-gol.simulate(num_steps=MAX_STEPS)
-cnv_properties = gol.classify_convergence(convergence_window_width=CONVERGENCE_WINDOW_WIDTH)
+parser.add_argument("--num-simulations", default=100000, type=int)
+parser.add_argument("--max-steps", default=100, type=int)
+parser.add_argument("--convergence-detector-window", default=30, type=int)
 
-print("Number of constant convergences:", NUM_SIMULATIONS - cnv_properties["dynamic"].sum())
-print("Number of  dynamic convergences:", cnv_properties["dynamic"].sum())
+arg = parser.parse_args()
 
-print("Dumping attractors.npy...")
+gol = cicero.tf_game_of_life.TFToroidalGOL.from_random_states(num_simulations=arg.num_simulations)
+gol.simulate(num_steps=arg.max_steps)
+cnv_properties = gol.classify_convergence(convergence_window_width=arg.convergence_detector_window)
+
+print("Dumping to attractors.npy...")
 np.save("attractors.npy", cnv_properties["indicator_states"])
