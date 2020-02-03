@@ -29,19 +29,20 @@ def main():
 
     parser = ArgumentParser("Cicero - NumPy simulation", description=descr)
     parser.add_argument("--initial-state", default="random", type=str,
-                        help="Either a JSON file path or 'random'")
+                        help="Pass a JSON file. See examples under configuration/. Defaults to 'random'")
     parser.add_argument("--convergence-detector-window", default=30, type=int,
-                        help="Slice size, on which convergence will be determined")
+                        help="Slice size, on which convergence will be determined. Default: 30")
     parser.add_argument("--break-on-convergence", default=False, type=bool,
-                        help="Whether to end the simulation on convergence")
+                        help="Whether to end the simulation on convergence. Default: False")
     parser.add_argument("--replay-fps", default=5, type=int,
-                        help="Replay speed in frames per second")
+                        help="Replay speed in frames per second. Default: 5")
     parser.add_argument("--init-probability", default=None, type=int,
-                        help="If set, the random initialization will produce active cells in this rate")
+                        help="If set, the random initialization will produce active cells in this rate. Default: None")
     parser.add_argument("--size", default="6x6", type=str,
-                        help="Simulation size, defaults to 6x6")
+                        help="Simulation grid size. Default: 6x6")
     parser.add_argument("--max-steps", default=100, type=int,
-                        help="How many steps to run the simulation for, if 'break-on-convergence' is False.")
+                        help="How many steps to run the simulation for, if 'break-on-convergence' is False. "
+                             "Default: 100")
 
     args = parser.parse_args()
     width, height = map(int, args.size.split("x"))

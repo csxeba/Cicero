@@ -1,5 +1,6 @@
 """
 Types and helpers related to convergence and convergence analysis
+These implementations were mostly used in devising heuristics for convergence detection.
 """
 
 import dataclasses

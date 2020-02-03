@@ -10,7 +10,7 @@ from . import convergence
 class ToroidalGOL:
 
     """
-    NumPy based simulation, less parallelism, better tracability.
+    NumPy based simulation, less parallelism, better traceability.
     It was used to find heuristics for convergence determination.
     """
 
